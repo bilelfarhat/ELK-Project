@@ -131,7 +131,194 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-<!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                            <title>Upload CSV</title>
+                            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+                            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+                        
+                            <!-- SweetAlert2 -->
+                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                            
+                            <style>
+                                :root {
+                                    --primary-color: #2c3e50;
+                                    --secondary-color: #3498db;
+                                    --accent-color: #e74c3c;
+                                    --footer-bg: #1a252f;
+                                }
+                        
+                                body {
+                                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                                    margin: 0;
+                                    padding: 0;
+                                    background-color: #f8f9fa;
+                                }
+                        
+                                .navbar {
+                                    background-color: var(--primary-color);
+                                    padding: 1rem 2rem;
+                                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                                }
+                        
+                                .navbar-brand {
+                                    color: white !important;
+                                    font-size: 1.5rem;
+                                    font-weight: bold;
+                                }
+                        
+                                .nav-link {
+                                    color: rgba(255,255,255,0.9) !important;
+                                    margin: 0 1rem;
+                                    transition: all 0.3s ease;
+                                }
+                        
+                                .nav-link:hover {
+                                    color: var(--secondary-color) !important;
+                                    transform: translateY(-2px);
+                                }
+                        
+                                .main-content {
+                                    padding: 3rem 0;
+                                    min-height: calc(100vh - 400px);
+                                }
+                        
+                                .upload-container {
+                                    max-width: 800px;
+                                    margin: auto;
+                                }
+                        
+                                .upload-card {
+                                    background: white;
+                                    border-radius: 15px;
+                                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                                    padding: 2.5rem;
+                                    margin-bottom: 2rem;
+                                }
+                        
+                                .upload-zone {
+                                    border: 3px dashed #dee2e6;
+                                    border-radius: 15px;
+                                    padding: 3.5rem;
+                                    text-align: center;
+                                    margin: 2rem 0;
+                                    transition: all 0.3s ease;
+                                    cursor: pointer;
+                                    background: #f8f9fa;
+                                    position: relative;
+                                    overflow: hidden;
+                                }
+                        
+                                .upload-zone:hover {
+                                    border-color: var(--secondary-color);
+                                    background-color: #edf2f7;
+                                }
+                        
+                                .upload-icon {
+                                    font-size: 4rem;
+                                    color: var(--secondary-color);
+                                    margin-bottom: 1.5rem;
+                                }
+                        
+                                .btn-upload {
+                                    background-color: var(--secondary-color);
+                                    color: white;
+                                    padding: 1rem 2.5rem;
+                                    border-radius: 30px;
+                                    border: none;
+                                    font-size: 1.1rem;
+                                    transition: all 0.3s ease;
+                                    width: 100%;
+                                    max-width: 400px;
+                                    margin: 0 auto;
+                                    display: block;
+                                }
+                        
+                                .btn-upload:hover {
+                                    background-color: var(--primary-color);
+                                    transform: translateY(-2px);
+                                }
+                        
+                                .footer {
+                                    background-color: var(--footer-bg);
+                                    color: white;
+                                    padding: 1.5rem 0;
+                                }
+                        
+                                .footer a {
+                                    color: rgba(255, 255, 255, 0.7);
+                                }
+                        
+                                .footer a:hover {
+                                    color: var(--secondary-color);
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            <!-- Navigation -->
+                            <nav class="navbar navbar-expand-lg navbar-dark">
+                                <div class="container">
+                                    <a class="navbar-brand" href="/"><i class="fas fa-chart-line mr-2"></i>Data Dashboard</a>
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div class="collapse navbar-collapse" id="navbarNav">
+                                        <ul class="navbar-nav ml-auto">
+                                            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                        
+                            <!-- Main Content -->
+                            <div class="main-content">
+                                <div class="upload-container">
+                                    <div class="upload-card">
+                                        <h2 class="text-center"><i class="fas fa-cloud-upload-alt"></i> Upload Your CSV File</h2>
+                                        <p class="text-center text-muted">Drag & drop your file or click to browse</p>
+                                        <form action="/upload" method="post" enctype="multipart/form-data">
+                                            <div class="upload-zone">
+                                                <i class="fas fa-file-csv upload-icon"></i>
+                                                <h4>Drop your file here</h4>
+                                                <input type="file" name="file" class="form-control-file" hidden>
+                                            </div>
+                                            <button type="submit" class="btn btn-upload">Upload</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <!-- SweetAlert2 Success Message -->
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                                {% if messages %}
+                                    {% for category, message in messages %}
+                                        <script>
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Success!',
+                                                text: '{{ message }}',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            });
+                                        </script>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+                        
+                            <!-- Footer -->
+                            <footer class="footer">
+                                <div class="container text-center">
+                                    <p>&copy; 2024 Data Dashboard. All rights reserved.</p>
+                                </div>
+                            </footer>
+                        </body>
+                        </html>
+                        link" href="/dashboard">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
                 </ul>
             </div>

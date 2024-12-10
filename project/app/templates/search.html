@@ -80,27 +80,47 @@
         </form>
     </div>
 
-    <!-- Search Results -->
-    <div class="results mt-10">
-        {% if results %}
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for hit in results %}
-            <div class="result bg-white p-6 rounded-md shadow-md hover:shadow-lg transition">
-                <h4 class="text-blue-600 font-bold text-xl mb-2">
-                    <i class="fas fa-box mr-2"></i>Gym Details
-                </h4>
-                <p><strong><i class="fas fa-venus-mars mr-2"></i>Sex:</strong> {{ hit._source.Gender }}</p>
-                <p><strong><i class="fas fa-user-clock mr-2"></i>Age:</strong> {{ hit._source.Age }}</p>
-                <p><strong><i class="fas fa-clock mr-2"></i>Durée de session:</strong> {{ hit._source.Session_Duration }}</p>
-
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <div class="alert bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md mt-6">
-        </div>
-        {% endif %}
+  <!-- Search Results -->
+<!-- Search Results -->
+<div class="results mt-10">
+    {% if results %}
+    <div class="bg-white rounded-md shadow-md overflow-x-auto">
+        <table class="table-auto w-full border-collapse border border-gray-300">
+            <thead class="bg-blue-600 text-white">
+                <tr>
+                    <th class="border border-gray-300 px-4 py-2">Avg BPM</th>
+                    <th class="border border-gray-300 px-4 py-2">Age</th>
+                    <th class="border border-gray-300 px-4 py-2">Sex</th>
+                    <th class="border border-gray-300 px-4 py-2">Experience Level</th>
+                    <th class="border border-gray-300 px-4 py-2">Calories Burned</th>
+                    <th class="border border-gray-300 px-4 py-2">Water Intake (liters)</th>
+                    <th class="border border-gray-300 px-4 py-2">Workout Frequency (days/week)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hit in results %}
+                <tr class="hover:bg-gray-100 transition">
+                    <td class="border border-gray-300 px-4 py-2 text-center">{{ hit._source.Avg_BPM }}</td>
+                    <td class="border border-gray-300 px-4 py-2 text-center">{{ hit._source.Age }}</td>
+                    <td class="border border-gray-300 px-4 py-2 text-center">{{ hit._source.Gender }}</td>
+                    <td class="border border-gray-300 px-4 py-2 text-center">{{ hit._source.Experience_Level }}</td>
+                    <td class="border border-gray-300 px-4 py-2 text-center">{{ hit._source.Calories_Burned }}</td>
+                    <td class="border border-gray-300 px-4 py-2 text-center">{{ hit._source["Water_Intake (liters)"] }}</td>
+                    <td class="border border-gray-300 px-4 py-2 text-center">{{ hit._source["Workout_Frequency (days/week)"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
+    {% else %}
+    <div class="alert bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md mt-6">
+        No results found. Try modifying your search criteria.
+    </div>
+    {% endif %}
+</div>
+
+
+
 </div>
 
 

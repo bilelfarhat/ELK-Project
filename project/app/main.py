@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, redirect, url_for
 import os
 from elasticsearch import Elasticsearch
 
@@ -11,6 +11,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ELASTICSEARCH_URL = "http://elasticsearch:9200"
 INDEX_NAME = "gym_data"
 es = Elasticsearch([ELASTICSEARCH_URL])
+
 
 @app.route('/')
 def home_page():
@@ -28,7 +29,9 @@ def upload_file():
     if file:
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         file.save(file_path)
-        return jsonify({'message': 'File uploaded successfully', 'file_path': file_path}), 200
+        
+        # Redirection vers la page tableau de bord après l'upload
+        return redirect(url_for('dashboard'))
 
 @app.route('/dashboard')
 def dashboard():
@@ -46,24 +49,6 @@ def search():
                         {"term": {"Workout_Type.keyword": query}},
                         {"term": {"Experience_Level.keyword": query}}
                     ]
-                }
-            }
-        }
-        try:
-            response = es.search(index=INDEX_NAME, body=search_query)
-            hits = response.get('hits', {}).get('hits', [])
-            return render_template('search.html', query=query, results=hits)
-        except Exception as e:
-            return jsonify({'error': f'Elasticsearch request failed: {str(e)}'}), 500
-    return render_template('search.html', query='', results=[])
-
-    if request.method == 'POST':
-        query = request.form.get('query', '')
-        search_query = {
-            "query": {
-                "multi_match": {
-                    "query": query,
-                    "fields": ["Gender", "Workout_Type", "Experience_Level"]
                 }
             }
         }
