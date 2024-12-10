@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .upload-zone {
+            border: 2px dashed #d1d5db;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+
+        .upload-zone:hover {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+
+        .upload-zone input {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-blue-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11m4 0h5M12 20l9-9-9-9-9 9 9 9z" />
+                </svg>
+                Data Dashboard
+            </a>
+            <ul class="flex space-x-6">
+                <li><a href="/" class="hover:text-yellow-400 transition">Home</a></li>
+                <li><a href="/dashboard" class="hover:text-yellow-400 transition">Dashboard</a></li>
+                <li><a href="/search" class="hover:text-yellow-400 transition">Search</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content py-12">
+        <div class="container mx-auto px-4">
+            <div class="bg-white shadow-lg rounded-lg p-8">
+                <h1 class="text-center text-4xl font-semibold mb-8">Welcome to the Data Dashboard</h1>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Upload Section -->
+                    <div class="text-center">
+                        <div class="flex justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-6 4l-2-2m-2 2l2-2m4-16H8m4 16v-4m-6-6V8a4 4 0 014-4h4a4 4 0 014 4v2" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">Upload Data</h4>
+                        <form action="/upload" method="post" enctype="multipart/form-data">
+                            <div class="upload-zone">
+                                <label for="file" class="block">
+                                    <p class="text-gray-500">Drop your CSV file here or click to browse</p>
+                                </label>
+                                <input type="file" name="file" id="file" accept=".csv" required>
+                            </div>
+                            <button type="submit" class="mt-4 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Upload File</button>
+                        </form>
+                    </div>
+                    <!-- Analytics Section -->
+                    <div class="text-center">
+                        <div class="flex justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.38 0 2.625-.56 3.535-1.465A5 5 0 1011 4.5m0 8a9 9 0 100 7.5m9-7.5a9 9 0 11-7.5-9" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">View Analytics</h4>
+                        <p class="text-gray-500 mb-4">Explore your data through our interactive dashboard</p>
+                        <a href="/dashboard" class="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Open Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400">
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h5 class="text-white text-lg font-bold mb-4">About Us</h5>
+                    <p>We provide tools to analyze your data effectively and efficiently.</p>
+                </div>
+                <div>
+                    <h5 class="text-white text-lg font-bold mb-4">Quick Links</h5>
+                    <ul>
+                        <li><a href="/" class="hover:text-white">Home</a></li>
+                        <li><a href="/dashboard" class="hover:text-white">Dashboard</a></li>
+                        <li><a href="/search" class="hover:text-white">Search</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white text-lg font-bold mb-4">Contact Us</h5>
+                    <p>Email: bilelfarhat93@gmail.com</p>
+                    <p>Phone: +216 24 746 684</p>
+                </div>
+            </div>
+            <div class="text-center pt-6 border-t border-gray-700 mt-6">
+                &copy; 2024 Data Dashboard. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard-title {
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+
+        .iframe-container {
+            margin: 2rem auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+        }
+
+        iframe {
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 1200px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-blue-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11m4 0h5M12 20l9-9-9-9-9 9 9 9z" />
+                </svg>
+                Data Dashboard
+            </a>
+            <ul class="flex space-x-6">
+                <li><a href="/" class="hover:text-yellow-400 transition">Home</a></li>
+                <li><a href="/dashboard" class="hover:text-yellow-400 transition">Dashboard</a></li>
+                <li><a href="/search" class="hover:text-yellow-400 transition">Search</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="dashboard-title">Kibana Dashboard</h1>
+        <div class="iframe-container">
+            <iframe src="https://zany-memory-wrvvp69j7gq3ggxp-5601.app.github.dev/goto/a0edcb90-b6d6-11ef-8685-07aa9f76df8b" height="600" width="800"></iframe>       
+         </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400">
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h5 class="text-white text-lg font-bold mb-4">About Us</h5>
+                    <p>We provide tools to analyze your data effectively and efficiently.</p>
+                </div>
+                <div>
+                    <h5 class="text-white text-lg font-bold mb-4">Quick Links</h5>
+                    <ul>
+                        <li><a href="/" class="hover:text-white">Home</a></li>
+                        <li><a href="/dashboard" class="hover:text-white">Dashboard</a></li>
+                        <li><a href="/search" class="hover:text-white">Search</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white text-lg font-bold mb-4">Contact Us</h5>
+                    <p>Email: bilelfarhat93@gmail.com</p>
+                    <p>Phone: +216 24 746 684</p>
+                </div>
+            </div>
+            <div class="text-center pt-6 border-t border-gray-700 mt-6">
+                &copy; 2024 Data Dashboard. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
